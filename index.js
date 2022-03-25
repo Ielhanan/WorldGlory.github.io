@@ -1,53 +1,82 @@
+gameArrey = [];
+cards = [];
+var gameStart = document.getElementById("startButton");
+gameStart.addEventListener("click", choseColor);
+/*chose color methode*/
+function choseColor() {
+  document.getElementById("startButton").remove();
+  document.getElementById("text").innerHTML = "Chose color";
+  document.getElementById("secondButton").innerHTML = "Black";
+  document.getElementById("firstButton").innerHTML = "Red";
+  document
+    .getElementById("secondButton")
+    .addEventListener("click", startFunct.bind(this, "black"));
 
-
-
-  var initArrey = ["1","2","3","4","5","6","7","8","9","10","J","Q","K"];
-  var i=0;
-  var x =[];
-
-var gameStart=document.getElementById("startButton");
-gameStart.addEventListener("click",startFunct);
-
-
-
-function startFunct(Arrey){
-    document.getElementById("startButton").remove();
-     x.push(initArrey[Math.floor(Math.random()*initArrey.length)]);
-     i++;
-    console.log( document.getElementById("firstCard").innerHTML="your first card :"+ x);
-    var above=document.getElementById("above");
-    var below=document.getElementById("below");
-    above.innerHTML="above";
-    below.innerHTML="below";
-    above.addEventListener("click",secondFunct("above"));
-    below.addEventListener("click",secondFunct("below"));
-};
-
-function secondFunct(action){
-    let temp=x.slice(-1) /* save the last resul , its to avoid when its the same number in row*/
-    x.push(initArrey[Math.floor(Math.random()*initArrey.length)]);
-    
-  //  checkDoubels(i);
-    if(action.localeCompare("above")==0)
-   {
-       console.log("ok");
-       console.log(temp);
-       console.log(x.slice(-1));
-        if(x.slice(-1)<temp)
-        {
-        document.getElementById("finalResult").innerHTML="YOU LOSE";
-        }
-   } 
-   if(action=="below"){
-
-   }
+  document
+    .getElementById("firstButton")
+    .addEventListener("click", startFunct.bind(this, "red"));
 }
-  
+/*This function take care to draw first card and then to give player to chose above or below*/
+function startFunct(color) {
+  let x = initArrey[Math.floor(Math.random() * initArrey.length)]; //draw card
+  console.log(x);
+  gameArrey.push(x);
+  cards.push(x.name);
+  if (color != x.color) {
+    gameOver();
+  }
+  document.getElementById("text").innerHTML = "Chose above or below";
+  document.getElementById("text").innerHTML = "your cards :" + cards;
+  let above = document.getElementById("firstButton");
+  let below = document.getElementById("secondButton");
+  above.innerHTML = "above";
+  below.innerHTML = "below";
+  above.addEventListener("click", secondFunct.bind(this, "above"));
+  below.addEventListener("click", secondFunct.bind(this, "below"));
+}
 
-function checkDoubels(i){
-    while(x[i]==x[i-1])
-    {
-    x.push(initArrey[Math.floor(Math.random()*initArrey.length)]);
-    i++;
+/*This function take care to draw second card , check if he was right in previos choice 
+  and then to give player to chose above or below or between*/
+function secondFunct(action) {
+  console.log("we in second funct");
+  let temp = gameArrey.slice(-1)[0].value;
+  let x = initArrey[Math.floor(Math.random() * initArrey.length)]; //draw card
+  console.log(x);
+  gameArrey.push(x);
+  cards.push(x.name);
+  // checkDoubels(x);
+  if (action == "above") {
+    if (gameArrey.slice(-1)[0].value > temp) {
+      gameOver();
     }
-};
+  } else if (action == "below") {
+    if (gameArrey.slice(-1)[0].value < temp) {
+      gameOver();
+    }
+  }
+  let above = document.getElementById("firstButton");
+  let below = document.getElementById("secondButton");
+  let between = document.getElementById("thirdButton");
+  between.innerHTML = "between";
+  above.addEventListener("click", () => thirdFunct("above"));
+  below.addEventListener("click", () => thirdFunct("below"));
+  between.addEventListener("click", () => thirdFunct("between"));
+}
+function thirdFunct(action) {
+  alert("all good");
+}
+
+// function checkDoubels(x) {
+//   debugger;
+//   while (x == gameArrey.slice(-1)[0]) {
+//     log("ok")
+//     x = initArrey[Math.floor(Math.random() * initArrey.length)];
+//     gameArrey.push(x);
+//     cards.pus(x.name);
+//   }
+// }
+
+function gameOver() {
+  document.getElementById("finalResult").innerHTML = "YOU LOSE";
+  alert("game over");
+}
