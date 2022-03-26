@@ -6,7 +6,7 @@ const queen1 = {
   Symbol: "heart",
   color: "red",
 };
-const jack1 = { name: "heart J ", value: 11, Symbol: "heart", color: "red" };
+const jack1 = { name: "heart J", value: 11, Symbol: "heart", color: "red" };
 const ten1 = { name: "heart 10 ", value: 10, Symbol: "heart", color: "red" };
 const nine1 = { name: "heart 9 ", value: 9, Symbol: "heart", color: "red" };
 const eight1 = { name: "heart 8 ", value: 8, Symbol: "heart", color: "red" };
