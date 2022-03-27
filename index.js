@@ -1,5 +1,8 @@
 gameArrey = [];
 cards = [];
+let var1;
+let var2;
+
 // let index = initArrey.findIndex((x) => {
 //   return x.name == cards.slice(-1)[0];
 // });
@@ -33,11 +36,14 @@ function startFunct(color) {
   above1.style.visibility = "visible";
   below1.style.visibility = "visible";
   let x = drawCard();
+  console.log(x);
+  var1 = x.value;
+  document.getElementById("text").innerHTML = "Chose above or below";
+  document.getElementById("text").innerHTML = "your cards :" + cards;
   if (color != x.color) {
     gameOver();
   }
-  document.getElementById("text").innerHTML = "Chose above or below";
-  document.getElementById("text").innerHTML = "your cards :" + cards;
+  console.log(cards);
   above1.innerHTML = "above";
   below1.innerHTML = "below";
   above1.addEventListener("click", secondFunct.bind(this, "above"));
@@ -54,7 +60,8 @@ function secondFunct(action) {
   between.style.visibility = "visible";
   let temp = gameArrey.slice(-1)[0].value;
   let x = drawCard();
-  // checkDoubels(x);
+  // x = checkDoubels(x);
+  var2 = x.value;
   if (action == "above") {
     if (x.value < temp) {
       gameOver();
@@ -72,19 +79,41 @@ function secondFunct(action) {
   below2.addEventListener("click", () => thirdFunct("below"));
   between.addEventListener("click", () => thirdFunct("between"));
 }
+
 function thirdFunct(action) {
+  above2.remove();
+  below2.remove();
+  between.remove();
+  let x = drawCard();
+  if (action == "above") {
+    if (x.value < var2 || x.value < var1) {
+      gameOver();
+    }
+  } else if (action == "below") {
+    if (x.value > var2 || x.value > var1) {
+      gameOver();
+    }
+  } else if (action == "between") {
+    if (
+      !(
+        (x.value > var1 && x.value < var2) ||
+        (x.value > var2 && x.value < var1)
+      )
+    ) {
+      gameOver();
+    }
+  }
+
   alert("all good");
 }
 
-// function checkDoubels(x) {
-//   debugger;
-//   while (x == gameArrey.slice(-1)[0]) {
-//     log("ok")
-//     x = initArrey[Math.floor(Math.random() * initArrey.length)];
-//     gameArrey.push(x);
-//     cards.pus(x.name);
-//   }
-// }
+function checkDoubels(x) {
+  let temp = x;
+  while (x == gameArrey.slice(-1)[0]) {
+    temp = drawCard();
+  }
+  return temp; //problem
+}
 
 function gameOver() {
   document.getElementById("finalResult").innerHTML = "YOU LOSE";
