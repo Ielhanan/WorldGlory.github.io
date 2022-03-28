@@ -10,10 +10,11 @@
   <h1 class="headline">Welcome to world glory game</h1>
 
   <body>
-    <div class="game">
+    <div id="div" class="game">
       <h2 id="finalResult"></h2>
       <button id="startButton" type="submit">Start play</button>
       <p id="text"></p>
+      <p id="cards"></p>
       <button
         style="visibility: hidden"
         id="blackButton"
@@ -45,7 +46,38 @@
         id="betweenButton"
         type="submit"
       ></button>
+      <button
+        style="visibility: hidden"
+        id="heartButton"
+        type="submit"
+      ></button>
+      <button
+        style="visibility: hidden"
+        id="diamondButton"
+        type="submit"
+      ></button>
+      <button style="visibility: hidden" id="clubButton" type="submit"></button>
+      <button
+        style="visibility: hidden"
+        id="spadeButton"
+        type="submit"
+      ></button>
+      <form action="/">
+        <input
+          style="visibility: hidden"
+          id="gloryButton"
+          type="button"
+          value="Submit"
+          onclick="checkFinalResult()"
+          style="font-size: 20px"
+        />
+      </form>
+
+      <button style="visibility: hidden" id="newGame" type="submit"></button>
+      <label style="visibility: hidden" for="cards">Choose a card:</label>
+      <select id="cardsSelect" style="visibility: hidden" name="cards"></select>
     </div>
+
     <script src="arrey.js"></script>
     <script src="index.js"></script>
   </body>

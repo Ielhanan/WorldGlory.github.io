@@ -200,3 +200,4 @@ initArrey = [
   two4,
   ace4,
 ];
+//initArrey = [(king1, queen1)];
