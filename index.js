@@ -1,4 +1,4 @@
-gameArrey = [3, 3, 4, 5];
+gameArrey = [];
 cards = [];
 
 let var1;
@@ -19,8 +19,8 @@ let club = document.getElementById("clubButton");
 let spade = document.getElementById("spadeButton");
 let gameStart = document.getElementById("startButton");
 let gloryButton = document.getElementById("gloryButton");
-creatNewCardList();
 gameStart.addEventListener("click", choseColor);
+
 /*chose color methode*/
 function choseColor() {
   document.getElementById("startButton").style.visibility = "hidden";
@@ -64,7 +64,7 @@ function secondFunct(action) {
   between.style.visibility = "visible";
   let temp = gameArrey.slice(-1)[0].value;
   let x = drawCard();
-  // x = checkDoubels(x);
+  x = checkDoubels(x);
   var2 = x.value;
   if (action == "above") {
     if (x.value < temp) {
@@ -94,6 +94,7 @@ function thirdFunct(action) {
   club.style.visibility = "visible";
   spade.style.visibility = "visible";
   let x = drawCard();
+  x = checkDoubels(x);
   text.innerHTML = "chose shape";
   cardsText.innerHTML = "your cards :" + cards;
   heart.innerHTML = "heart";
@@ -137,19 +138,18 @@ function fourthFunct(shape) {
     gameOver();
   }
   creatNewCardList();
-  document.getElementById("cardsSelect").style.visibility = "visible";
-  gloryButton.visibility = "visible";
+  sel.style.visibility = "visible";
+  gloryButton.style.visibility = "visible";
   gloryButton.innerHTML = "Submit";
 }
 
 function checkFinalResult() {
   gloryButton.remove();
-
   document.getElementById("cardsSelect").remove();
-  debugger;
   console.log(sel);
   var option = sel.options[sel.selectedIndex].value;
   let x = drawCard();
+  cardsText.innerHTML = "your cards :" + cards;
   if (x.name == option) {
     wonWorldGlory();
   } else gameOver();
@@ -157,13 +157,16 @@ function checkFinalResult() {
 
 function checkDoubels(x) {
   let temp = x;
-  while (x == gameArrey.slice(-1)[0]) {
+  while (
+    var1 == gameArrey.slice(-1)[0].value ||
+    var2 == gameArrey.slice(-1)[0].value
+  ) {
     temp = drawCard();
   }
   return temp; //problem
 }
 function wonWorldGlory() {
-  document.getElementById("finalResult").innerHTML = "YOU LOSE";
+  document.getElementById("finalResult").innerHTML = "YOU WIN";
 }
 function gameOver() {
   document.getElementById("finalResult").innerHTML = "YOU LOSE";
