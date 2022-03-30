@@ -1,9 +1,9 @@
-gameArrey = [];
+gameArrey = [3, 3, 4, 5];
 cards = [];
+
 let var1;
 let var2;
-const sel = document.getElementById("cardsSelect");
-
+let sel = document.getElementById("cardsSelect");
 let black = document.getElementById("blackButton");
 let red = document.getElementById("redButton");
 let above1 = document.getElementById("aboveButton1");
@@ -19,6 +19,7 @@ let club = document.getElementById("clubButton");
 let spade = document.getElementById("spadeButton");
 let gameStart = document.getElementById("startButton");
 let gloryButton = document.getElementById("gloryButton");
+creatNewCardList();
 gameStart.addEventListener("click", choseColor);
 /*chose color methode*/
 function choseColor() {
@@ -31,6 +32,7 @@ function choseColor() {
   black.addEventListener("click", startFunct.bind(this, "black"));
   red.addEventListener("click", startFunct.bind(this, "red"));
 }
+
 /*This function take care to draw first card and then to give player to chose above or below*/
 function startFunct(color) {
   black.remove();
@@ -134,7 +136,7 @@ function fourthFunct(shape) {
   if (shape != x.Symbol) {
     gameOver();
   }
-
+  creatNewCardList();
   document.getElementById("cardsSelect").style.visibility = "visible";
   gloryButton.visibility = "visible";
   gloryButton.innerHTML = "Submit";
@@ -142,9 +144,8 @@ function fourthFunct(shape) {
 
 function checkFinalResult() {
   gloryButton.remove();
-  document.getElementById("cardsSelect").remove();
-  creatNewCardList();
 
+  document.getElementById("cardsSelect").remove();
   debugger;
   console.log(sel);
   var option = sel.options[sel.selectedIndex].value;
