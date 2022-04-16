@@ -7,61 +7,17 @@
 
     <title>Document</title>
   </head>
-  <h1 class="headline">Welcome to world glory game</h1>
 
   <body>
+    <h1 class="headline">Welcome to world glory game</h1>
     <div id="div" class="game">
       <h2 id="finalResult"></h2>
-      <button id="startButton" type="submit">Start play</button>
-      <p id="text"></p>
+      <button id="startButton" type="submit" class="firstStage">
+        Start play
+      </button>
+
       <p id="cards"></p>
-      <button
-        style="visibility: hidden"
-        id="blackButton"
-        type="submit"
-      ></button>
-      <button style="visibility: hidden" id="redButton" type="submit"></button>
-      <button
-        style="visibility: hidden"
-        id="aboveButton1"
-        type="submit"
-      ></button>
-      <button
-        style="visibility: hidden"
-        id="belowButton1"
-        type="submit"
-      ></button>
-      <button
-        style="visibility: hidden"
-        id="aboveButton2"
-        type="submit"
-      ></button>
-      <button
-        style="visibility: hidden"
-        id="belowButton2"
-        type="submit"
-      ></button>
-      <button
-        style="visibility: hidden"
-        id="betweenButton"
-        type="submit"
-      ></button>
-      <button
-        style="visibility: hidden"
-        id="heartButton"
-        type="submit"
-      ></button>
-      <button
-        style="visibility: hidden"
-        id="diamondButton"
-        type="submit"
-      ></button>
-      <button style="visibility: hidden" id="clubButton" type="submit"></button>
-      <button
-        style="visibility: hidden"
-        id="spadeButton"
-        type="submit"
-      ></button>
+
       <form action="/">
         <input
           style="visibility: hidden"
@@ -71,10 +27,17 @@
           onclick="checkFinalResult()"
           style="font-size: 20px"
         />
+        <label style="visibility: hidden" for="cards">Choose a card:</label>
+        <select
+          id="cardsSelect"
+          style="visibility: hidden"
+          name="cards"
+        ></select>
       </form>
-      <button style="visibility: hidden" id="newGame" type="submit"></button>
-      <label style="visibility: hidden" for="cards">Choose a card:</label>
-      <select id="cardsSelect" style="visibility: hidden" name="cards"></select>
+      <!-- <button style="visibility: hidden" id="newGame" type="submit"></button> -->
+    </div>
+    <div id="div2">
+      <p id="text"></p>
     </div>
 
     <script src="arrey.js"></script>

@@ -9,21 +9,36 @@ let initArrey;
 let var1;
 let var2;
 let sel = document.getElementById("cardsSelect");
-let black = document.getElementById("blackButton");
-let red = document.getElementById("redButton");
-let above1 = document.getElementById("aboveButton1");
-let below1 = document.getElementById("belowButton1");
-let above2 = document.getElementById("aboveButton2");
-let below2 = document.getElementById("belowButton2");
-let between = document.getElementById("betweenButton");
-let text = document.getElementById("text");
-let cardsText = document.getElementById("cards");
-let heart = document.getElementById("heartButton");
-let diamond = document.getElementById("diamondButton");
-let club = document.getElementById("clubButton");
-let spade = document.getElementById("spadeButton");
-let gameStart = document.getElementById("startButton");
+const black = document.createElement("button");
+const red = document.createElement("button");
+const above1 = document.createElement("button");
+const below1 = document.createElement("button");
+const above2 = document.createElement("button");
+const below2 = document.createElement("button");
+const between = document.createElement("button");
+const text = document.getElementById("text");
+const cardsText = document.getElementById("cards");
+const heart = document.createElement("button");
+const diamond = document.createElement("button");
+const club = document.createElement("button");
+const spade = document.createElement("button");
+const gameStart = document.getElementById("startButton");
+const newGame = document.createElement("button");
 let gloryButton = document.getElementById("gloryButton");
+
+console.log(sel);
+black.id = "black";
+red.id = "red";
+above1.id = "above1";
+below1.id = "below1";
+above2.id = "above2";
+below2.id = "below2";
+between.id = "between";
+heart.id = "heart";
+diamond.id = "diamond";
+club.id = "club";
+spade.id = "spade";
+newGame.id = "newGame";
 gameStart.addEventListener("click", async () => {
   initArrey = [];
   await fetchDeck(initArrey);
@@ -32,13 +47,11 @@ gameStart.addEventListener("click", async () => {
   choseColor();
 });
 /*chose color methode*/
-
-console.log(initArrey);
 function choseColor() {
-  document.getElementById("startButton").style.visibility = "hidden";
-  text.innerHTML = "Chose color";
-  black.style.visibility = "visible";
-  red.style.visibility = "visible";
+  gameStart.remove();
+  document.getElementById("div2").appendChild(black);
+  document.getElementById("div2").appendChild(red);
+  text.innerHTML = "Choose color";
   red.innerHTML = "red";
   black.innerHTML = "black";
   black.addEventListener("click", () => {
@@ -53,11 +66,11 @@ function choseColor() {
 function startFunct(color) {
   black.remove();
   red.remove();
-  above1.style.visibility = "visible";
-  below1.style.visibility = "visible";
+  document.getElementById("div2").appendChild(above1);
+  document.getElementById("div2").appendChild(below1);
   let x = drawCard();
   var1 = parseInt(x.value);
-  text.innerHTML = "Chose above or below";
+  text.innerHTML = "Choose above or below";
   drawCardImage(cards);
   console.log(x);
   if (x.suit === "HEARTS" || x.suit === "DIAMONDS") choice = "red";
@@ -77,9 +90,9 @@ function startFunct(color) {
 function secondFunct(action) {
   above1.remove();
   below1.remove();
-  above2.style.visibility = "visible";
-  below2.style.visibility = "visible";
-  between.style.visibility = "visible";
+  document.getElementById("div2").appendChild(above2);
+  document.getElementById("div2").appendChild(between);
+  document.getElementById("div2").appendChild(below2);
   let temp = gameArrey.slice(-1)[0].value;
   let x = drawCard();
   x = checkDoubels(x);
@@ -101,22 +114,20 @@ function secondFunct(action) {
       gameOver();
     }
   }
-  text.innerHTML = "chose above below or between";
+  text.innerHTML = "choose above below or between";
   drawCardImage(cards);
   above2.innerHTML = "above";
   below2.innerHTML = "below";
   between.innerHTML = "between";
-  if (var1 + var2 == 27) {
-    /*if var1+var2=27 it says the cards was king +ace with value 14 ,
+  if (var1 == 14 || var2 == 14) {
+    /*if var1 or var2 equal to 14 it says the cards was ace with value 14 ,
   player cant chose above */
     above2.remove();
-    between.remove();
   }
-  if (var1 + var2 == 3) {
-    /*if var1+var2=27 it says the cards was two +ace with value 1 ,
-  player cant chose below  */
+  if (var1 == 1 || var2 == 1) {
+    /*if var1 or var2 equal to 1 it says the cards was ace with value 1 ,
+  player cant chose below */
     below2.remove();
-    between.remove();
   }
   if (var1 - var2 == 1 || var2 - var1 == 1) {
     /*it says the both vars are successor so player cant chose between */
@@ -133,13 +144,14 @@ function thirdFunct(action) {
   above2.remove();
   below2.remove();
   between.remove();
-  heart.style.visibility = "visible";
-  diamond.style.visibility = "visible";
-  club.style.visibility = "visible";
-  spade.style.visibility = "visible";
+  document.getElementById("div2").appendChild(club);
+  document.getElementById("div2").appendChild(heart);
+  document.getElementById("div2").appendChild(spade);
+  document.getElementById("div2").appendChild(diamond);
+
   let x = drawCard();
   x = checkDoubels(x); /*ignore cards when they the value is same*/
-  text.innerHTML = "chose shape";
+  text.innerHTML = "choose shape";
   drawCardImage(cards);
   heart.innerHTML = "♥️";
   club.innerHTML = "♣️";
@@ -180,7 +192,7 @@ function fourthFunct(shape) {
   club.remove();
   spade.remove();
   let x = drawCard();
-  text.innerHTML = "chose card";
+  text.innerHTML = "choose card";
   drawCardImage(cards);
   if (shape != x.suit) {
     gameOver();
@@ -188,7 +200,6 @@ function fourthFunct(shape) {
   creatNewCardList();
   sel.style.visibility = "visible";
   gloryButton.style.visibility = "visible";
-  gloryButton.innerHTML = "Submit";
 }
 
 /*last check at the game , if player guss the card right he win else lose */
@@ -220,9 +231,9 @@ function wonWorldGlory() {
 }
 /*Handle with all elemnt to display game over and remove other buttons expet new game button*/
 function gameOver() {
+  document.getElementById("div").appendChild(newGame);
   document.getElementById("finalResult").innerHTML = "YOU LOSE";
-  document.getElementById("newGame").style.visibility = "visible";
-  document.getElementById("newGame").innerHTML = "new game";
+  newGame.innerHTML = "new game";
   diamond.remove();
   heart.remove();
   club.remove();
@@ -237,7 +248,7 @@ function gameOver() {
   text.remove();
   gloryButton.remove();
   sel.remove();
-  document.getElementById("newGame").addEventListener("click", () => {
+  newGame.addEventListener("click", () => {
     window.location.reload("Refresh");
   });
 }

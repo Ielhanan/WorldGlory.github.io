@@ -1,11 +1,72 @@
+body {
+  height: 400px;
+}
+#div {
+  margin-top: 10px;
+}
+#text {
+  text-align: center;
+}
 h1 {
   text-align: center;
+  margin-top: 0;
 }
 .game {
   text-align: center;
   margin-top: 10%;
 }
-
+#startButton {
+  height: 100%;
+  width: 50%;
+}
+#black {
+  height: 100%;
+  width: 50%;
+}
+#red {
+  height: 100%;
+  width: 50%;
+}
+#above1 {
+  height: 100%;
+  width: 50%;
+}
+#below1 {
+  height: 100%;
+  width: 50%;
+}
+#above2 {
+  height: 100%;
+  width: 33%;
+}
+#between {
+  height: 100%;
+  width: 33%;
+}
+#below2 {
+  height: 100%;
+  width: 33%;
+}
+#heart {
+  height: 100%;
+  width: 25%;
+}
+#diamond {
+  height: 100%;
+  width: 25%;
+}
+#spade {
+  height: 100%;
+  width: 25%;
+}
+#club {
+  height: 100%;
+  width: 25%;
+}
+#newGame {
+  height: 100%;
+  width: 50%;
+}
 .card {
-  height: 130px;
+  height: 100px;
 }
