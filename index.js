@@ -2,6 +2,7 @@
 cards arrey used to display the cards to user 
 gameArrey is the drawed cards in the game */
 
+choices = [];
 gameArrey = [];
 cards = [];
 let choice;
@@ -39,16 +40,17 @@ diamond.id = "diamond";
 club.id = "club";
 spade.id = "spade";
 newGame.id = "newGame";
+
 gameStart.addEventListener("click", async () => {
   initArrey = [];
   await fetchDeck(initArrey);
-  console.log(initArrey);
   fixValues();
   choseColor();
 });
 /*chose color methode*/
 function choseColor() {
   gameStart.remove();
+
   document.getElementById("div2").appendChild(black);
   document.getElementById("div2").appendChild(red);
   text.innerHTML = "Choose color";
@@ -64,6 +66,7 @@ function choseColor() {
 
 /*This function take care to draw first card and then to give player to chose above or below*/
 function startFunct(color) {
+  choices.push(color);
   black.remove();
   red.remove();
   document.getElementById("div2").appendChild(above1);
@@ -88,6 +91,7 @@ function startFunct(color) {
 /*This function take care to draw second card , check if he was right in previos choice 
   and then to give player to chose above or below or between*/
 function secondFunct(action) {
+  choices.push(action);
   above1.remove();
   below1.remove();
   document.getElementById("div2").appendChild(above2);
@@ -123,15 +127,31 @@ function secondFunct(action) {
     /*if var1 or var2 equal to 14 it says the cards was ace with value 14 ,
   player cant chose above */
     above2.remove();
+    if (var1 - var2 == 1 || var2 - var1 == 1) {
+      between.remove();
+      below2.style.width = "100 %";
+    } else {
+      between.style.width = "50%";
+      below2.style.width = "50%";
+    }
   }
   if (var1 == 1 || var2 == 1) {
     /*if var1 or var2 equal to 1 it says the cards was ace with value 1 ,
   player cant chose below */
     below2.remove();
+    if (var1 - var2 == 1 || var2 - var1 == 1) {
+      between.remove();
+      above2.style.width = "100%";
+    } else {
+      between.style.width = "50%";
+      above2.style.width = "50%";
+    }
   }
   if (var1 - var2 == 1 || var2 - var1 == 1) {
     /*it says the both vars are successor so player cant chose between */
     between.remove();
+    below2.style.width = "50%";
+    above2.style.width = "50%";
   }
   above2.addEventListener("click", () => thirdFunct("above"));
   below2.addEventListener("click", () => thirdFunct("below"));
@@ -141,6 +161,7 @@ function secondFunct(action) {
 /*Handle about stage 3, check if player guss before right , and creat choice about shape*/
 
 function thirdFunct(action) {
+  choices.push(action);
   above2.remove();
   below2.remove();
   between.remove();
@@ -187,6 +208,7 @@ function thirdFunct(action) {
 }
 /*Handle about stage 4 , check if player guss symbol right , and creat card list to chose final card*/
 function fourthFunct(shape) {
+  choices.push(shape);
   diamond.remove();
   heart.remove();
   club.remove();
@@ -209,7 +231,7 @@ function checkFinalResult() {
   var option = sel.options[sel.selectedIndex].value;
   let x = drawCard();
   drawCardImage(cards);
-
+  choices.push(x.code);
   if (x.code == option) {
     wonWorldGlory();
   } else gameOver();
@@ -248,8 +270,11 @@ function gameOver() {
   text.remove();
   gloryButton.remove();
   sel.remove();
-  newGame.addEventListener("click", () => {
+  newGame.addEventListener("click", async () => {
     window.location.reload("Refresh");
+    await fetchDeck(initArrey);
+    fixValues();
+    choseColor();
   });
 }
 
@@ -291,6 +316,7 @@ function drawCard() {
 /*end of drawCard*/
 
 function drawCardImage(cards, start) {
+  document.getElementById("div2").style.marginTop = "-10px";
   cards.forEach((card) => {
     cardsText.innerHTML += `
         <img class="card" src="${card.image}" alt="${card.suit}"/>

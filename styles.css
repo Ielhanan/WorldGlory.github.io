@@ -1,8 +1,14 @@
 body {
   height: 400px;
 }
+#form {
+  text-align: center;
+}
 #div {
   margin-top: 10px;
+}
+#div2 {
+  margin-top: 120px;
 }
 #text {
   text-align: center;
