@@ -53,9 +53,9 @@ function choseColor() {
 
   document.getElementById("div2").appendChild(black);
   document.getElementById("div2").appendChild(red);
-  text.innerHTML = "Choose color";
-  red.innerHTML = "red";
-  black.innerHTML = "black";
+  text.innerHTML = "Choose a color";
+  red.innerHTML = "Red";
+  black.innerHTML = "Black";
   black.addEventListener("click", () => {
     startFunct("black");
   });
@@ -82,8 +82,8 @@ function startFunct(color) {
     /*check if player choice was right*/
     gameOver();
   }
-  above1.innerHTML = "above";
-  below1.innerHTML = "below";
+  above1.innerHTML = "Above";
+  below1.innerHTML = "Below";
   above1.addEventListener("click", secondFunct.bind(this, "above"));
   below1.addEventListener("click", secondFunct.bind(this, "below"));
 }
@@ -118,11 +118,11 @@ function secondFunct(action) {
       gameOver();
     }
   }
-  text.innerHTML = "choose above below or between";
+  text.innerHTML = "Choose above, below or between";
   drawCardImage(cards);
-  above2.innerHTML = "above";
-  below2.innerHTML = "below";
-  between.innerHTML = "between";
+  above2.innerHTML = "Above";
+  below2.innerHTML = "Below";
+  between.innerHTML = "Between";
   if (var1 == 14 || var2 == 14) {
     /*if var1 or var2 equal to 14 it says the cards was ace with value 14 ,
   player cant chose above */
@@ -172,7 +172,7 @@ function thirdFunct(action) {
 
   let x = drawCard();
   x = checkDoubels(x); /*ignore cards when they the value is same*/
-  text.innerHTML = "choose shape";
+  text.innerHTML = "Choose a shape";
   drawCardImage(cards);
   heart.innerHTML = "♥️";
   club.innerHTML = "♣️";
@@ -214,7 +214,7 @@ function fourthFunct(shape) {
   club.remove();
   spade.remove();
   let x = drawCard();
-  text.innerHTML = "choose card";
+  text.innerHTML = "Choose a card";
   drawCardImage(cards);
   if (shape != x.suit) {
     gameOver();
@@ -249,13 +249,13 @@ function checkDoubels(x) {
   return temp; //problem
 }
 function wonWorldGlory() {
-  document.getElementById("finalResult").innerHTML = "YOU WIN";
+  document.getElementById("finalResult").innerHTML = "YOU HAVE ATTAINED WORLD'S GLORY";
 }
 /*Handle with all elemnt to display game over and remove other buttons expet new game button*/
 function gameOver() {
   document.getElementById("div").appendChild(newGame);
-  document.getElementById("finalResult").innerHTML = "YOU LOSE";
-  newGame.innerHTML = "new game";
+  document.getElementById("finalResult").innerHTML = "Better luck next time";
+  newGame.innerHTML = "TRY AGAIN";
   diamond.remove();
   heart.remove();
   club.remove();
