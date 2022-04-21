@@ -251,6 +251,7 @@ function checkFinalResult() {
 x is the value of privous card*/
 function checkDoubels(x) {
   let temp = x;
+  console.log(gameArrey.slice(-1)[0].value);
   while (
     var1 == gameArrey.slice(-1)[0].value ||
     var2 == gameArrey.slice(-1)[0].value
