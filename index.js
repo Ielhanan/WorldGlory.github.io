@@ -8,6 +8,15 @@ let choice;
 let initArrey;
 let var1;
 let var2;
+
+// Fetching API
+const fetchDeck = async (apiData) => {
+  let res = await fetch(
+    "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
+  );
+  const { cards } = await res.json();
+  return cards.map((card) => apiData.push(card));
+};
 let sel = document.getElementById("cardsSelect");
 const black = document.createElement("button");
 const red = document.createElement("button");
@@ -25,7 +34,7 @@ const spade = document.createElement("button");
 const gameStart = document.getElementById("startButton");
 const newGame = document.createElement("button");
 let gloryButton = document.getElementById("gloryButton");
-
+initArrey = [];
 black.id = "black";
 red.id = "red";
 above1.id = "above1";
@@ -38,12 +47,12 @@ diamond.id = "diamond";
 club.id = "club";
 spade.id = "spade";
 newGame.id = "newGame";
+fetchDeck(initArrey);
+fixValues();
 gameStart.addEventListener("click", async () => {
-  initArrey = [];
-  await fetchDeck(initArrey);
-  fixValues();
   choseColor();
 });
+
 /*chose color methode*/
 function choseColor() {
   gameStart.remove();
@@ -294,15 +303,6 @@ function creatNewCardList() {
     sel.appendChild(opt);
   }
 }
-
-// Fetching API
-const fetchDeck = async (apiData) => {
-  let res = await fetch(
-    "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
-  );
-  const { cards } = await res.json();
-  return cards.map((card) => apiData.push(card));
-};
 
 /*this function draw a new card from deck and return it */
 function drawCard() {
