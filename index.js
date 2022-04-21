@@ -1,7 +1,6 @@
 /*decleration about all elemnt in html will use in all functions 
 cards arrey used to display the cards to user 
 gameArrey is the drawed cards in the game */
-
 choices = [];
 gameArrey = [];
 cards = [];
@@ -72,7 +71,10 @@ function startFunct(color) {
   let x = drawCard();
   var1 = parseInt(x.value);
   text.innerHTML = "Choose above or below";
+  // gameStart.style.marginTop = "0px";
+
   drawCardImage(cards);
+  // document.getElementById("blankImage").remove();
   console.log(x);
   if (x.suit === "HEARTS" || x.suit === "DIAMONDS") choice = "red";
   else choice = "black";
@@ -218,6 +220,7 @@ function fourthFunct(shape) {
     gameOver();
   }
   creatNewCardList();
+  document.getElementById("div2").style.marginTop = "50px";
   sel.style.visibility = "visible";
   gloryButton.style.visibility = "visible";
 }
@@ -225,8 +228,9 @@ function fourthFunct(shape) {
 /*last check at the game , if player guss the card right he win else lose */
 function checkFinalResult() {
   gloryButton.remove();
+  debugger;
   document.getElementById("cardsSelect").remove();
-  var option = sel.options[sel.selectedIndex].value;
+  var option = sel.options[sel.selectedIndex].lable;
   let x = drawCard();
   drawCardImage(cards);
   choices.push(x.code);
@@ -247,12 +251,14 @@ function checkDoubels(x) {
   return temp; //problem
 }
 function wonWorldGlory() {
-  document.getElementById("finalResult").innerHTML = "YOU HAVE ATTAINED WORLD'S GLORY";
+  document.getElementById("finalResult").innerHTML =
+    "YOU HAVE ATTAINED WORLD'S GLORY";
 }
 /*Handle with all elemnt to display game over and remove other buttons expet new game button*/
 function gameOver() {
-  document.getElementById("div").appendChild(newGame);
+  document.getElementById("div2").appendChild(newGame);
   document.getElementById("finalResult").innerHTML = "Better luck next time";
+  document.getElementById("div2").style.marginTop = "41.5px";
   newGame.innerHTML = "TRY AGAIN";
   diamond.remove();
   heart.remove();
@@ -314,7 +320,6 @@ function drawCard() {
 /*end of drawCard*/
 
 function drawCardImage(cards, start) {
-  document.getElementById("div2").style.marginTop = "-10px";
   cards.forEach((card) => {
     cardsText.innerHTML += `
         <img class="card" src="${card.image}" alt="${card.suit}"/>
