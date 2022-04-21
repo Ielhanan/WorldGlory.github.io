@@ -48,8 +48,8 @@ club.id = "club";
 spade.id = "spade";
 newGame.id = "newGame";
 fetchDeck(initArrey);
-fixValues();
-gameStart.addEventListener("click", async () => {
+
+gameStart.addEventListener("click", () => {
   choseColor();
 });
 
@@ -72,6 +72,7 @@ function choseColor() {
 
 /*This function take care to draw first card and then to give player to chose above or below*/
 function startFunct(color) {
+  fixValues();
   choices.push(color);
   black.remove();
   red.remove();
@@ -84,7 +85,6 @@ function startFunct(color) {
 
   drawCardImage(cards);
   // document.getElementById("blankImage").remove();
-  console.log(x);
   if (x.suit === "HEARTS" || x.suit === "DIAMONDS") choice = "red";
   else choice = "black";
   if (color !== choice) {
@@ -110,6 +110,7 @@ function secondFunct(action) {
   let x = drawCard();
   x = checkDoubels(x);
   var2 = parseInt(x.value);
+  console.log(var1 + " " + var2);
   if (action === "above") {
     if (var2 === 1) {
       /*if var2 =1 so we draw ace , player chose above so ace value is 14*/
@@ -237,9 +238,8 @@ function fourthFunct(shape) {
 /*last check at the game , if player guss the card right he win else lose */
 function checkFinalResult() {
   gloryButton.remove();
-  debugger;
   document.getElementById("cardsSelect").remove();
-  var option = sel.options[sel.selectedIndex].lable;
+  var option = sel.options[sel.selectedIndex].label;
   let x = drawCard();
   drawCardImage(cards);
   choices.push(x.code);
@@ -262,6 +262,7 @@ function checkDoubels(x) {
 function wonWorldGlory() {
   document.getElementById("finalResult").innerHTML =
     "YOU HAVE ATTAINED WORLD'S GLORY";
+  text.remove;
 }
 /*Handle with all elemnt to display game over and remove other buttons expet new game button*/
 function gameOver() {
@@ -307,7 +308,6 @@ function creatNewCardList() {
 /*this function draw a new card from deck and return it */
 function drawCard() {
   let x = initArrey[Math.floor(Math.random() * initArrey.length)]; //draw card
-  console.log(x);
   gameArrey.push(x);
   cards.push(x);
   let index = initArrey.findIndex((x) => {
@@ -344,3 +344,9 @@ function fixValues() {
     }
   });
 }
+
+/*change arrey for work 
+let check = [];
+check = initArrey.slice(0, 5);
+console.log(initArrey[0]);
+*/
