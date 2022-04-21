@@ -1,6 +1,12 @@
 body {
   height: 400px;
 }
+#blankImage {
+}
+#startButton {
+  display: block;
+  margin: 0 auto;
+}
 #form {
   text-align: center;
 }

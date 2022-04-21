@@ -27,7 +27,6 @@ const gameStart = document.getElementById("startButton");
 const newGame = document.createElement("button");
 let gloryButton = document.getElementById("gloryButton");
 
-console.log(sel);
 black.id = "black";
 red.id = "red";
 above1.id = "above1";
@@ -40,7 +39,6 @@ diamond.id = "diamond";
 club.id = "club";
 spade.id = "spade";
 newGame.id = "newGame";
-
 gameStart.addEventListener("click", async () => {
   initArrey = [];
   await fetchDeck(initArrey);
