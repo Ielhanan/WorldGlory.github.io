@@ -91,9 +91,9 @@ function startFunct(color) {
     gameOver();
   }
   above1.innerHTML =
-    ' <img src="/images/above.png" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/above.png" style="height: 100%" width="100%" alt=""/>';
   below1.innerHTML =
-    ' <img src="/images/below.jpg" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/below.jpg" style="height: 100%" width="100%" alt=""/>';
   above1.addEventListener("click", secondFunct.bind(this, "above"));
   below1.addEventListener("click", secondFunct.bind(this, "below"));
 }
@@ -132,11 +132,11 @@ function secondFunct(action) {
   text.innerHTML = "Choose above, below or between";
   drawCardImage(cards);
   above2.innerHTML =
-    ' <img src="/images/above.png" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/above.png" style="height: 100%" width="100%" alt=""/>';
   below2.innerHTML =
-    ' <img src="/images/below.jpg" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/below.jpg" style="height: 100%" width="100%" alt=""/>';
   between.innerHTML =
-    ' <img src="/images/between.png" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/between.png" style="height: 100%" width="100%" alt=""/>';
   if (var1 == 14 || var2 == 14) {
     /*if var1 or var2 equal to 14 it says the cards was ace with value 14 ,
   player cant chose above */
@@ -188,13 +188,13 @@ function thirdFunct(action) {
   text.innerHTML = "Choose a shape";
   drawCardImage(cards);
   heart.innerHTML =
-    ' <img src="/images/heart.png" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/heart.png" style="height: 100%" width="100%" alt=""/>';
   club.innerHTML =
-    ' <img src="/images/club.png" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/club.png" style="height: 100%" width="100%" alt=""/>';
   spade.innerHTML =
-    ' <img src="/images/spades.jpg" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/spades.jpg" style="height: 100%" width="100%" alt=""/>';
   diamond.innerHTML =
-    ' <img src="/images/diamond.jpg" style="height: 100%" width="100%" alt=""/>';
+    ' <img src="images/diamond.jpg" style="height: 100%" width="100%" alt=""/>';
   if (action == "above") {
     if (x.value === "1") {
       /*the current card is ace we chose above so ace is 14 value*/
