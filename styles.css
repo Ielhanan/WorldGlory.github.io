@@ -1,6 +1,7 @@
 body {
   height: 400px;
 }
+
 #blankImage {
   height: 100px;
 }
@@ -8,6 +9,9 @@ body {
   display: block;
   margin: 0 auto;
   margin-top: 50px;
+}
+button {
+  padding: 0%;
 }
 #form {
   text-align: center;
@@ -38,10 +42,12 @@ h1 {
   width: 50%;
 }
 #black {
+  background-color: black;
   height: 100%;
   width: 50%;
 }
 #red {
+  background-color: red;
   height: 100%;
   width: 50%;
 }
