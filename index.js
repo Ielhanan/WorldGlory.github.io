@@ -141,24 +141,35 @@ function secondFunct(action) {
     /*if var1 or var2 equal to 14 it says the cards was ace with value 14 ,
   player cant chose above */
     above2.remove();
-    if (var1 - var2 == 1 || var2 - var1 == 1) {
-      between.remove();
-      below2.style.width = "100 %";
+    if (var1 == 2 || var2 == 2) {
+      /*case when ace is 14 and 2 card is two*/
+      below2.remove();
+      between.style.width = "100%";
     } else {
-      between.style.width = "50%";
-      below2.style.width = "50%";
+      if (var1 - var2 == 1 || var2 - var1 == 1) {
+        between.remove();
+        below2.style.width = "100 %";
+      } else {
+        between.style.width = "50%";
+        below2.style.width = "50%";
+      }
     }
   }
   if (var1 == 1 || var2 == 1) {
     /*if var1 or var2 equal to 1 it says the cards was ace with value 1 ,
   player cant chose below */
     below2.remove();
-    if (var1 - var2 == 1 || var2 - var1 == 1) {
-      between.remove();
-      above2.style.width = "100%";
+    if (var1 == 13 || var2 == 13) {
+      above2.remove();
+      between.style.width = "100%";
     } else {
-      between.style.width = "50%";
-      above2.style.width = "50%";
+      if (var1 - var2 == 1 || var2 - var1 == 1) {
+        between.remove();
+        above2.style.width = "100%";
+      } else {
+        between.style.width = "50%";
+        above2.style.width = "50%";
+      }
     }
   }
   if (var1 - var2 == 1 || var2 - var1 == 1) {
