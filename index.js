@@ -50,23 +50,35 @@ newGame.id = "newGame";
 fetchDeck(initArrey);
 gameStart.addEventListener("click", () => {
   makeShuffleSound();
-  choseColor();
+  gameStart.remove();
+  setTimeout(function () {
+    choseColor();
+  }, 2000);
 });
 
 /*chose color methode*/
 function choseColor() {
-  gameStart.remove();
-
   document.getElementById("div2").appendChild(black);
   document.getElementById("div2").appendChild(red);
   text.innerHTML = "Choose a color";
   // red.innerHTML = "Red";
   // black.innerHTML = "Black";
   black.addEventListener("click", () => {
-    startFunct("black");
+    makeDrawSound();
+    black.remove();
+    red.remove();
+    setTimeout(function () {
+      startFunct("black");
+    }, 1000);
   });
+
   red.addEventListener("click", () => {
-    startFunct("red");
+    makeDrawSound();
+    black.remove();
+    red.remove();
+    setTimeout(function () {
+      startFunct("red");
+    }, 1000);
   });
 }
 
@@ -74,10 +86,10 @@ function choseColor() {
 function startFunct(color) {
   fixValues();
   choices.push(color);
-  black.remove();
-  red.remove();
+
   document.getElementById("div2").appendChild(above1);
   document.getElementById("div2").appendChild(below1);
+
   let x = drawCard();
   var1 = parseInt(x.value);
   text.innerHTML = "Choose above or below";
@@ -95,20 +107,34 @@ function startFunct(color) {
     ' <img src="images/above.png" style="height: 100%" width="100%" alt=""/>';
   below1.innerHTML =
     ' <img src="images/below.jpg" style="height: 100%" width="100%" alt=""/>';
-  above1.addEventListener("click", secondFunct.bind(this, "above"));
-  below1.addEventListener("click", secondFunct.bind(this, "below"));
+
+  above1.addEventListener("click", () => {
+    makeDrawSound();
+    above1.remove();
+    below1.remove();
+    setTimeout(function () {
+      secondFunct("above");
+    }, 1000);
+  });
+  below1.addEventListener("click", () => {
+    makeDrawSound();
+    above1.remove();
+    below1.remove();
+    setTimeout(function () {
+      secondFunct("below");
+    }, 1000);
+  });
 }
 
 /*This function take care to draw second card , check if he was right in previos choice 
   and then to give player to chose above or below or between*/
 function secondFunct(action) {
   choices.push(action);
-  above1.remove();
-  below1.remove();
   document.getElementById("div2").appendChild(above2);
   document.getElementById("div2").appendChild(between);
   document.getElementById("div2").appendChild(below2);
   let temp = gameArrey.slice(-1)[0].value;
+
   let x = drawCard();
   x = checkDoubels(x);
   var2 = parseInt(x.value);
@@ -179,18 +205,41 @@ function secondFunct(action) {
     below2.style.width = "50%";
     above2.style.width = "50%";
   }
-  above2.addEventListener("click", () => thirdFunct("above"));
-  below2.addEventListener("click", () => thirdFunct("below"));
-  between.addEventListener("click", () => thirdFunct("between"));
+  above2.addEventListener("click", () => {
+    makeDrawSound();
+    above2.remove();
+    below2.remove();
+    between.remove();
+    setTimeout(function () {
+      thirdFunct("above");
+    }, 1000);
+  });
+  below2.addEventListener("click", () => {
+    makeDrawSound();
+    above2.remove();
+    below2.remove();
+    between.remove();
+    setTimeout(function () {
+      thirdFunct("below");
+    }, 1000);
+  });
+
+  between.addEventListener("click", () => {
+    makeDrawSound();
+    above2.remove();
+    below2.remove();
+    between.remove();
+    setTimeout(function () {
+      thirdFunct("between");
+    }, 1000);
+  });
 }
 
 /*Handle about stage 3, check if player guss before right , and creat choice about shape*/
 
 function thirdFunct(action) {
   choices.push(action);
-  above2.remove();
-  below2.remove();
-  between.remove();
+
   document.getElementById("div2").appendChild(club);
   document.getElementById("div2").appendChild(heart);
   document.getElementById("div2").appendChild(spade);
@@ -230,10 +279,47 @@ function thirdFunct(action) {
     }
   }
 
-  heart.addEventListener("click", () => fourthFunct("HEARTS"));
-  diamond.addEventListener("click", () => fourthFunct("DIAMONDS"));
-  club.addEventListener("click", () => fourthFunct("CLUBS"));
-  spade.addEventListener("click", () => fourthFunct("SPADES"));
+  heart.addEventListener("click", () => {
+    makeDrawSound();
+    diamond.remove();
+    heart.remove();
+    club.remove();
+    spade.remove();
+    setTimeout(() => {
+      fourthFunct("HEARTS");
+    }, 1000);
+  });
+  diamond.addEventListener("click", () => {
+    makeDrawSound();
+    diamond.remove();
+    heart.remove();
+    club.remove();
+    spade.remove();
+    setTimeout(() => {
+      fourthFunct("DIAMONDS");
+    }, 1000);
+  });
+
+  club.addEventListener("click", () => {
+    makeDrawSound();
+    diamond.remove();
+    heart.remove();
+    club.remove();
+    spade.remove();
+    setTimeout(() => {
+      fourthFunct("CLUBS");
+    }, 1000);
+  });
+  spade.addEventListener("click", () => {
+    makeDrawSound();
+    diamond.remove();
+    heart.remove();
+    club.remove();
+    spade.remove();
+    setTimeout(() => {
+      fourthFunct("SPADES");
+    }, 1000);
+  });
 }
 /*Handle about stage 4 , check if player guss symbol right , and creat card list to chose final card*/
 function fourthFunct(shape) {
@@ -252,11 +338,17 @@ function fourthFunct(shape) {
   document.getElementById("div2").style.marginTop = "50px";
   sel.style.visibility = "visible";
   gloryButton.style.visibility = "visible";
+  gloryButton.addEventListener("click", () => {
+    gloryButton.remove();
+    makeDrawSound();
+    setTimeout(() => {
+      checkFinalResult();
+    }, 1000);
+  });
 }
 
 /*last check at the game , if player guss the card right he win else lose */
 function checkFinalResult() {
-  gloryButton.remove();
   document.getElementById("cardsSelect").remove();
   var option = sel.options[sel.selectedIndex].label;
   let x = drawCard();
@@ -327,7 +419,6 @@ function creatNewCardList() {
 
 /*this function draw a new card from deck and return it */
 function drawCard() {
-  makeDrawSound();
   let x = initArrey[Math.floor(Math.random() * initArrey.length)]; //draw card
   gameArrey.push(x);
   cards.push(x);
