@@ -49,6 +49,7 @@ spade.id = "spade";
 newGame.id = "newGame";
 fetchDeck(initArrey);
 gameStart.addEventListener("click", () => {
+  makeShuffleSound();
   choseColor();
 });
 
@@ -326,6 +327,7 @@ function creatNewCardList() {
 
 /*this function draw a new card from deck and return it */
 function drawCard() {
+  makeDrawSound();
   let x = initArrey[Math.floor(Math.random() * initArrey.length)]; //draw card
   gameArrey.push(x);
   cards.push(x);
@@ -369,3 +371,15 @@ let check = [];
 check = initArrey.slice(0, 5);
 console.log(initArrey[0]);
 */
+
+function makeShuffleSound() {
+  randomSound = Math.floor(Math.random() * 10);
+  var shuffle = new Audio("sounds/shuffle/shuff" + randomSound + ".aac");
+  shuffle.play();
+}
+
+function makeDrawSound() {
+  randomDrawSound = Math.floor(Math.random() * 27);
+  var Draw = new Audio("sounds/draw/draw" + randomDrawSound + ".aac");
+  Draw.play();
+}
