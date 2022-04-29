@@ -1,3 +1,9 @@
+//check arrey
+// for (let index = 0; index < 45; index++) {
+//   initArrey.pop();
+// }
+// console.log(initArrey);
+
 /*decleration about all elemnt in html will use in all functions 
 cards arrey used to display the cards to user 
 gameArrey is the drawed cards in the game */
@@ -138,7 +144,7 @@ function secondFunct(action) {
   let x = drawCard();
   x = checkDoubels(x);
   var2 = parseInt(x.value);
-  console.log(var1 + " " + var2);
+
   if (action === "above") {
     if (var2 === 1) {
       /*if var2 =1 so we draw ace , player chose above so ace value is 14*/
@@ -339,17 +345,16 @@ function fourthFunct(shape) {
   sel.style.visibility = "visible";
   gloryButton.style.visibility = "visible";
   gloryButton.addEventListener("click", () => {
-    gloryButton.remove();
     makeDrawSound();
+    gloryButton.remove();
     setTimeout(() => {
       checkFinalResult();
-    }, 1000);
+    }, 2000);
   });
 }
 
 /*last check at the game , if player guss the card right he win else lose */
 function checkFinalResult() {
-  document.getElementById("cardsSelect").remove();
   var option = sel.options[sel.selectedIndex].label;
   let x = drawCard();
   drawCardImage(cards);
@@ -362,10 +367,15 @@ function checkFinalResult() {
 x is the value of privous card*/
 function checkDoubels(x) {
   let temp = x;
-  console.log(gameArrey.slice(-1)[0].value);
+  let varTemp = 100;
+
+  if (var1 == 14 || var2 == 14) {
+    varTemp = 1;
+  }
   while (
     var1 == gameArrey.slice(-1)[0].value ||
-    var2 == gameArrey.slice(-1)[0].value
+    var2 == gameArrey.slice(-1)[0].value ||
+    varTemp == gameArrey.slice(-1)[0].value
   ) {
     temp = drawCard();
   }
