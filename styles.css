@@ -11,6 +11,7 @@ body {
   margin-top: 50px;
 }
 button {
+  border: 1ch;
   padding: 0%;
 }
 #form {
@@ -42,12 +43,10 @@ h1 {
   width: 50%;
 }
 #black {
-  background-color: black;
   height: 100%;
   width: 50%;
 }
 #red {
-  background-color: red;
   height: 100%;
   width: 50%;
 }

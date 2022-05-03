@@ -64,6 +64,10 @@ gameStart.addEventListener("click", () => {
 
 /*chose color methode*/
 function choseColor() {
+  black.innerHTML =
+    ' <img src="images/Black.jpeg" style="height: 100%" width="100%" alt=""/>';
+  red.innerHTML =
+    ' <img src="images/Red.jpeg" style="height: 100%" width="100%" alt=""/>';
   document.getElementById("div2").appendChild(black);
   document.getElementById("div2").appendChild(red);
   text.innerHTML = "Choose a color";
@@ -75,7 +79,7 @@ function choseColor() {
     red.remove();
     setTimeout(function () {
       startFunct("black");
-    }, 1000);
+    }, 500);
   });
 
   red.addEventListener("click", () => {
@@ -84,7 +88,7 @@ function choseColor() {
     red.remove();
     setTimeout(function () {
       startFunct("red");
-    }, 1000);
+    }, 500);
   });
 }
 
